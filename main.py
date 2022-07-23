@@ -1,0 +1,15 @@
+basic.show_string("I")
+BME280.power_on()
+BME280.address(BME280_I2C_ADDRESS.ADDR_0X76)
+basic.pause(1000)
+
+def on_forever():
+    basic.show_string("S")
+    serial.write_number(BME280.temperature(BME280_T.T_C))
+    serial.write_line("")
+    serial.write_number(BME280.pressure(BME280_P.PA))
+    serial.write_line("")
+    basic.pause(1000)
+    basic.show_string("P")
+    basic.pause(5000)
+basic.forever(on_forever)
